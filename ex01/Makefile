@@ -1,6 +1,6 @@
 NAME = a.out
-SOURCES = main.cpp
-INCLUDES = 
+SOURCES = main.cpp Span.cpp
+INCLUDES = Span.hpp
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.cpp=.o))
 SRCS = $(addprefix $(SRC_DIR)/, $(SOURCES))
