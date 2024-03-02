@@ -21,16 +21,15 @@ int main()
 	std::cout << mstack.top() << std::endl;
 
 	mstack.push(3);
-	mstack.push(5);
+	mstack.push(9);
 
-	MutantStack<int> mstack2(mstack);
+	const MutantStack<int> mstack2(mstack);
 	mstack.push(737);
 
 	MutantStack<int> mstack3;
 	mstack3 = mstack;
 	mstack.push(0);
 
-	/*
 	std::cout << "= mstack ================" << std::endl;
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
@@ -41,8 +40,8 @@ int main()
 		++it;
 	}
 	std::cout << "= mstack2 ===============" << std::endl;
-	MutantStack<int>::iterator it2 = mstack2.begin();
-	MutantStack<int>::iterator ite2 = mstack2.end();
+	MutantStack<int>::const_iterator it2 = mstack2.begin();
+	MutantStack<int>::const_iterator ite2 = mstack2.end();
 	while (it2 != ite2) {
 		std::cout << *it2 << std::endl;
 		++it2;
@@ -61,7 +60,13 @@ int main()
 		std::cout << *rit << std::endl;
 		++rit;
 	}
+	std::cout << "= mstack2(r) =============" << std::endl;
+	MutantStack<int>::const_reverse_iterator rit2 = mstack2.rbegin();
+	MutantStack<int>::const_reverse_iterator rite2 = mstack2.rend();
+	while (rit2 != rite2) {
+		std::cout << *rit2 << std::endl;
+		++rit2;
+	}
 	std::cout << "=========================" << std::endl;
 	return 0;
-	*/
 }

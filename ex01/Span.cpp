@@ -1,6 +1,6 @@
 #include "Span.hpp"
 
-char const*	Span::NoSpanException::what(void) const throw() { return ("No span can be found"); }
+char const*	Span::NoSpanException::what(void) const throw() { return ("Span: 스팬이 존재할 수 없습니다"); }
 
 Span::Span(void) : arr(new int[0]), mx(0), sz(0) { }
 
@@ -14,9 +14,12 @@ Span::Span(const Span& s) : arr(new int[s.sz]), mx(s.mx), sz(s.sz) {
 Span& Span::operator=(const Span& s) {
 	if (this == &s)
 		return (*this);
+	if (mx != s.mx)
+		throw (std::range_error("Span: 크기가 같지 않습니다"));
 	int* tmp = new int[s.sz];
 	delete[] arr;
-	arr = tmp; sz = s.sz; mx = s.mx;
+	arr = tmp;
+	sz = s.sz;
 	for (size_t i=0; i!=sz; ++i)
 		arr[i] = s.arr[i];
 	return (*this);
@@ -28,19 +31,19 @@ size_t	Span::size(void) const { return (sz); };
 
 int&	Span::at(unsigned int idx) {
 	if (idx >= sz)
-		throw (std::out_of_range("Span"));
+		throw (std::out_of_range("Span: 잘못된 인덱스 접근입니다"));
 	return (arr[idx]);
 }
 
 const int&	Span::at(unsigned int idx) const {
 	if (idx >= sz)
-		throw (std::out_of_range("Span"));
+		throw (std::out_of_range("Span: 잘못된 인덱스 접근입니다"));
 	return (arr[idx]);
 }
 
 void	Span::addNumber(int n) {
 	if (sz == mx)
-		throw (std::out_of_range("Span"));
+		throw (std::range_error("Span: 용량이 부족합니다"));
 	arr[sz++] = n;
 }
 
