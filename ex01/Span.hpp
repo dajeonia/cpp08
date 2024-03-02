@@ -38,7 +38,6 @@ public:
 	}
 	unsigned int shortestSpan(void) const;
 	unsigned int largestSpan(void) const;
-private:
 };
 
 std::ostream& operator<<(std::ostream& os, const Span& s);
